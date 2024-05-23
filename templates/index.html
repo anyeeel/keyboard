@@ -1,0 +1,57 @@
+{% extends 'master.html' %}
+{% include 'header.html' %}
+ 
+{% block title %} Home {% endblock %}
+ 
+{% block body %}
+
+<div class="container mt-4">
+  <div class="row mb-4">
+    <div class="col-md-12 text-center">
+      <h2>My Keyboard Collection</h2>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Keyboard Name</th>
+                <th scope="col">Size</th>
+                <th scope="col">Keycaps</th>
+                <th scope="col">Switches</th>
+                <th scope="col">Stabilizer</th>
+                <th scope="col">Case</th>
+                <th scope="col">Lights</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for keyboards in keyboards %}
+        <tr>
+            <th scope="row">{{ loop.index }}</th>
+            <td>{{ keyboards.kbname }}</td>
+            <td>{{ keyboards.size }}</td>
+            <td>{{ keyboards.keycaps }}</td>
+            <td>{{ keyboards.switches }}</td>
+            <td>{{ keyboards.stabilizers }}</td>
+            <td>{{ keyboards.case }}</td>
+            <td>{{ keyboards.lights }}</td>
+            <td>
+                <div class="btn-group" role="group" aria-label="Actions">
+                    <a href="/{{keyboards.id}}/edit" class="btn btn-success btn-sm" role="button">
+                        <i class="fas fa-edit"></i> Edit
+                    </a>
+                    <a href="/{{keyboards.id}}/delete" class="btn btn-danger btn-sm" role="button">
+                        <i class="fas fa-trash-alt"></i> Delete
+                    </a>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}
